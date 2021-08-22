@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import { date, uid } from "quasar";
-
+import { mapActions } from "vuex";
+import api from '../api'
 export default {
   name: "SearchBox",
   data() {
@@ -27,31 +27,22 @@ export default {
       enteredValue: "",
     };
   },
+  props: ['search'],
+  async mounted () {
+    if(this.search) {
+      this.enteredValue = this.search
+      await this.getGithubUserByUsername()
+    }
+  },
   methods: {
+    ...mapActions(["setHistory"]),
     async getGithubUserByUsername() {
-      const username = this.enteredValue;
-      const uri = "https://api.github.com/users/" + username;
-      const res = await fetch(uri);
-      const data = await res.json();
-      const timeStamp = Date.now();
-      data.date = date.formatDate(timeStamp, "YY-M-DD HH:mm:ss");
-      data._uid = uid();
-      this.saveSearch(data);
-      this.enteredValue = "";
-      //   console.log(data);
-    },
-    async repeatSearchRequest(user) {
-      const res = await fetch(user.url);
-      const data = await res.json();
-      const timeStamp = Date.now();
-      data.date = date.formatDate(timeStamp, "YY-M-DD HH:mm:ss");
-      data._uid = uid();
-      this.saveSearch(data);
-      this.enteredValue = "";
-      //   console.log(data);
+      const response = await api.getGithubUserByUsername(this.enteredValue)
+      this.saveSearch(response);
+      this.$emit('search', response)
     },
     saveSearch(data) {
-      this.$store.commit("storeSearchHistory", data);
+      this.setHistory(data)
     },
   },
 };

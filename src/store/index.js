@@ -1,41 +1,33 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
-import { useQuasar } from "quasar";
-// import StoreSearch from "./StoreSearch";
 
 const data = localStorage.getItem("search-history");
 
+
 export default store(function () {
   const Store = createStore({
-    /* eslint-disable */
+    name: "StoreSearch",
+    namespaced: true,
     state: {
-      searchHistory: [],
+      history: data ? JSON.parse(data) : []
     },
     mutations: {
-      saveOnLocalstorage(data) {
-        let found = localStorage.getItem(data._uid);
-        if (!found) {
-          localStorage.setItem("search-history", JSON.stringify(data));
-        }
+      saveOnLocalstorage(state, data) {
+        state.history.push(data)
+        localStorage.setItem("search-history", JSON.stringify([...state.history]));
       },
-      storeSearchHistory(state, data) {
-        let found = state.searchHistory.find(
-          (search) => search.uid === data.uid
-        );
-        if (!found) {
-          state.searchHistory.push(data);
-          this.commit("saveOnLocalstorage");
-        }
-      },
+    },
+    actions: {
+      setHistory ({ commit }, data) {
+        commit('saveOnLocalstorage', data)
+      }
     },
     getters: {
-      searchHistory() {
-        const $q = useQuasar();
-
-        return $q.localStorage.getItem("search-history");
+      getHistory(state) {
+        return state.history
       },
     },
-    strict: process.env.DEV,
+    strict: process.env.DEBUGGING,
   });
 
   return Store;
