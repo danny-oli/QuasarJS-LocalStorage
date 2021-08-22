@@ -76,7 +76,7 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapGetters(["getHistory"]),
+    ...mapGetters('storeSearch',["getHistory"]),
   },
   components: {},
   methods: {

@@ -1,31 +1,15 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
+import storeSearch from "./storeSearch";
 
 const data = localStorage.getItem("search-history");
 
-
 export default store(function () {
   const Store = createStore({
-    name: "StoreSearch",
+    name: "store",
     namespaced: true,
-    state: {
-      history: data ? JSON.parse(data) : []
-    },
-    mutations: {
-      saveOnLocalstorage(state, data) {
-        state.history.push(data)
-        localStorage.setItem("search-history", JSON.stringify([...state.history]));
-      },
-    },
-    actions: {
-      setHistory ({ commit }, data) {
-        commit('saveOnLocalstorage', data)
-      }
-    },
-    getters: {
-      getHistory(state) {
-        return state.history
-      },
+    modules: {
+      storeSearch,
     },
     strict: process.env.DEBUGGING,
   });
