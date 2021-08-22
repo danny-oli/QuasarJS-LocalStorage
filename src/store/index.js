@@ -1,27 +1,42 @@
-import { store } from 'quasar/wrappers'
-import { createStore } from 'vuex'
+import { store } from "quasar/wrappers";
+import { createStore } from "vuex";
+import { useQuasar } from "quasar";
+// import StoreSearch from "./StoreSearch";
 
-// import example from './module-example'
+const data = localStorage.getItem("search-history");
 
-/*
- * If not building with SSR mode, you can
- * directly export the Store instantiation;
- *
- * The function below can be async too; either use
- * async/await or return a Promise which resolves
- * with the Store instance.
- */
-
-export default store(function (/* { ssrContext } */) {
+export default store(function () {
   const Store = createStore({
-    modules: {
-      // example
+    /* eslint-disable */
+    state: {
+      searchHistory: [],
     },
+    mutations: {
+      saveOnLocalstorage(data) {
+        let found = localStorage.getItem(data._uid);
+        if (!found) {
+          localStorage.setItem("search-history", JSON.stringify(data));
+        }
+      },
+      storeSearchHistory(state, data) {
+        let found = state.searchHistory.find(
+          (search) => search.uid === data.uid
+        );
+        if (!found) {
+          state.searchHistory.push(data);
+          this.commit("saveOnLocalstorage");
+        }
+      },
+    },
+    getters: {
+      searchHistory() {
+        const $q = useQuasar();
 
-    // enable strict mode (adds overhead!)
-    // for dev mode and --debug builds only
-    strict: process.env.DEBUGGING
-  })
+        return $q.localStorage.getItem("search-history");
+      },
+    },
+    strict: process.env.DEV,
+  });
 
-  return Store
-})
+  return Store;
+});
