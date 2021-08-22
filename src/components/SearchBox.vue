@@ -38,6 +38,7 @@ export default {
     ...mapActions('storeSearch',["setHistory"]),
     async getGithubUserByUsername() {
       const response = await api.getGithubUserByUsername(this.enteredValue)
+      console.log(response);
       this.saveSearch(response);
       this.$emit('search', response)
     },
