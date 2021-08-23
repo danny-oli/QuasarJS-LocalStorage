@@ -4,6 +4,7 @@
 
     <SearchBox :search="username" @search="updateUser" />
     <UserCard :user="userData" v-if="userData" />
+    <SearchPageBanner v-if="!userData"/>
   </q-page>
 </template>
 
@@ -11,12 +12,14 @@
 import { defineComponent } from "vue";
 import SearchBox from "../components/SearchBox.vue";
 import UserCard from "../components/UserCard.vue";
+import SearchPageBanner from "../components/SearchPageBanner.vue";
 
 export default defineComponent({
   name: "SearchPage",
   components: {
     SearchBox,
     UserCard,
+    SearchPageBanner,
   },
   data: () => ({
     username: "",
@@ -30,15 +33,9 @@ export default defineComponent({
     updateUser(user) {
       console.log(user);
       this.userData = user;
+
     },
   },
 });
 </script>
 
-<style lang="scss" scoped>
-#search-box {
-  display: flex;
-  height: 70px;
-  align-items: center;
-}
-</style>

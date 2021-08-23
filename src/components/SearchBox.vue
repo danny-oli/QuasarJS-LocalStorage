@@ -1,5 +1,9 @@
 <template>
-  <div id="search-box" class="justify-center q-gutter-md" style="max-width: 100%">
+  <div
+    id="search-box"
+    class="justify-center q-gutter-md"
+    style="max-width: 100%"
+  >
     <q-input
       @keyup.enter="getGithubUserByUsername"
       label="Github Username"
@@ -19,7 +23,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import api from '../api'
+import api from "../api";
 export default {
   name: "SearchBox",
   data() {
@@ -27,24 +31,32 @@ export default {
       enteredValue: "",
     };
   },
-  props: ['search'],
-  async mounted () {
-    if(this.search) {
-      this.enteredValue = this.search
-      await this.getGithubUserByUsername()
+  props: ["search"],
+  async mounted() {
+    if (this.search) {
+      this.enteredValue = this.search;
+      await this.getGithubUserByUsername();
     }
   },
   methods: {
-    ...mapActions('storeSearch',["setHistory"]),
+    ...mapActions("storeSearch", ["setHistory"]),
     async getGithubUserByUsername() {
-      const response = await api.getGithubUserByUsername(this.enteredValue)
+      const response = await api.getGithubUserByUsername(this.enteredValue);
       console.log(response);
       this.saveSearch(response);
-      this.$emit('search', response)
+      this.$emit("search", response);
     },
     saveSearch(data) {
-      this.setHistory(data)
+      this.setHistory(data);
     },
   },
 };
 </script>
+
+<style scoped>
+#search-box {
+  display: flex;
+  height: 70px;
+  align-items: center;
+}
+</style>
