@@ -10,7 +10,7 @@ A Quasar.Js app created to deliver this job interview requirements.
   <a href="#information_source-how-to-use">How To Use</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 </p>
 
-<q-img src="~assets/preview/preview.jpg">
+<img src="./assets/preview/preview.jpg">
 
 ## :rocket: Technologies
 
