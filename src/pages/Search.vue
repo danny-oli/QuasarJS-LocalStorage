@@ -31,7 +31,7 @@ export default defineComponent({
   },
   methods: {
     updateUser(user) {
-      console.log(user);
+      // console.log(user);
       this.userData = user;
 
     },

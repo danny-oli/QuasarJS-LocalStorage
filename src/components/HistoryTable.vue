@@ -7,17 +7,6 @@
       row-key="name"
       v-model:pagination="pagination"
     >
-      <template v-slot:body-cell-action="props">
-        <q-td :props="props">
-          <q-btn
-            icon-right="refresh"
-            no-caps
-            flat
-            dense
-            @click="searchAgain(props.row)"
-          />
-        </q-td>
-      </template>
       <template v-slot:body-cell-Avatar="props">
         <q-td :props="props">
           <q-img
@@ -28,6 +17,11 @@
             dense
             @click="searchAgain(props.row)"
           />
+        </q-td>
+      </template>
+      <template v-slot:body-cell-action="props">
+        <q-td :props="props">
+          <q-btn icon-right="refresh" no-caps @click="searchAgain(props.row)" />
         </q-td>
       </template>
     </q-table>
@@ -78,7 +72,8 @@ export default defineComponent({
         },
         {
           name: "action",
-          label: "Action",
+          label: "Repeat Search",
+          align: "center",
           field: "action",
         },
       ],

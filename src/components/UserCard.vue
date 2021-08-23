@@ -4,7 +4,9 @@
       <q-img :src="user.avatar_url" />
 
       <q-card-section>
-        <div class="text-overline text-orange-9">Git User: {{ user.login }}</div>
+        <div class="text-overline text-orange-9">
+          Git User: {{ user.login }}
+        </div>
         <div class="text-h5 q-mt-sm q-mb-xs">{{ user.name }}</div>
         <div class="text-caption text-grey">Type: {{ user.type }}</div>
       </q-card-section>
@@ -48,7 +50,6 @@ export default {
   setup() {
     return {
       expanded: ref(false),
-      lorem: "JSON Data.",
     };
   },
   props: ["user"],

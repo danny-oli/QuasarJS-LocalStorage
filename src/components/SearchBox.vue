@@ -45,6 +45,7 @@ export default {
       console.log(response);
       this.saveSearch(response);
       this.$emit("search", response);
+      this.enteredValue = "";
     },
     saveSearch(data) {
       this.setHistory(data);
