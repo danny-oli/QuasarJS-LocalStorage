@@ -1,21 +1,12 @@
 <template>
-  <div id="card-div" class="q-pa-md row items-start q-gutter-md">
+  <div id="card-div" class="items-start">
     <q-table
       title="List of user"
       :rows="getHistory"
       :columns="columns"
+      :grid="$q.screen.xs"
       row-key="name"
     >
-      <!-- <q-td :props="props" auto-width>
-        <q-btn
-          size="sm"
-          color="accent"
-          round
-          dense
-          @click="props.expand = !props.expand"
-          :icon="props.expand ? 'remove' : 'add'"
-        />
-      </q-td> -->
       <template v-slot:body-cell-action="props">
         <q-td :props="props">
           <q-btn
@@ -30,6 +21,7 @@
       <template v-slot:body-cell-Avatar="props">
         <q-td :props="props">
           <q-img
+            class="avatar-picture"
             :src="props.row.avatar_url"
             no-caps
             flat
@@ -114,6 +106,9 @@ export default defineComponent({
 }
 #card-item {
   display: flex;
+}
+.avatar-picture {
+  max-width: 70px !important;
 }
 .card-div {
   display: flex;

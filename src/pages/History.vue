@@ -1,6 +1,6 @@
 <template>
   <q-page class="q-pa-lg">
-    <h5 class="q-mt-none">History</h5>
+    <h4 class="q-mt-none">History</h4>
 
     <HistoryTable />
   </q-page>

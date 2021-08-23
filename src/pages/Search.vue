@@ -1,37 +1,37 @@
 <template>
   <q-page class="q-pa-lg">
-    <h5 class="q-mt-none">Search</h5>
+    <h4 class="q-mt-none">Search</h4>
 
     <SearchBox :search="username" @search="updateUser" />
-    <HistoryCard :user="userData" v-if="userData" />
+    <UserCard :user="userData" v-if="userData" />
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import  SearchBox  from "../components/SearchBox.vue";
-import HistoryCard from '../components/HistoryCard.vue'
+import SearchBox from "../components/SearchBox.vue";
+import UserCard from "../components/UserCard.vue";
 
 export default defineComponent({
-  name: 'SearchPage',
-  components:{
+  name: "SearchPage",
+  components: {
     SearchBox,
-    HistoryCard
+    UserCard,
   },
   data: () => ({
-    username: '',
+    username: "",
     userData: null,
   }),
-  created () {
-    const { user } = this.$route.query
-    if(user) this.username = user
+  created() {
+    const { user } = this.$route.query;
+    if (user) this.username = user;
   },
   methods: {
     updateUser(user) {
-      console.log(user)
-      this.userData = user
-    }
-  }
+      console.log(user);
+      this.userData = user;
+    },
+  },
 });
 </script>
 

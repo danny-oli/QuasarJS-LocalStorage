@@ -1,5 +1,5 @@
 <template>
-  <div id="search-box" class="q-gutter-md" style="max-width: 100%">
+  <div id="search-box" class="justify-center q-gutter-md" style="max-width: 100%">
     <q-input
       @keyup.enter="getGithubUserByUsername"
       label="Github Username"
