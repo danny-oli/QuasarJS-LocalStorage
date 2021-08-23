@@ -1,4 +1,4 @@
-# Vivo App (quasar.js-vivo)
+# Vivo App (Quasar.Js)
 
 A Quasar.Js app created to deliver this job interview requirements.
 
@@ -50,13 +50,14 @@ $ npx serve
 Possible improvements
 
 - Add tests to the application
-- Add create a backend to store our data
+- Create a backend with Node.js to store our data on Mongodb or Mysql.
 - Use Axios for HTTP requests
 - Add custom favicon
 - Design improvements
 
 ## :rocket: What I Learned
 
-It was a great experience to develop this application using the  Quasar.js Framework.
-This was my first time with it, my background comes from a little Vue.js usage.
+It was a great experience to develop this application using the  Quasar.js Framework with VueX.
+It was my first time working with it. My background comes from a little Vue.js usage.
+
 

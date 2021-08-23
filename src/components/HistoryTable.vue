@@ -1,11 +1,11 @@
 <template>
   <div id="card-div" class="items-start">
     <q-table
-      title="List of user"
+      title="Search History Table"
       :rows="getHistory"
       :columns="columns"
-      :grid="$q.screen.xs"
       row-key="name"
+      v-model:pagination="pagination"
     >
       <template v-slot:body-cell-action="props">
         <q-td :props="props">
@@ -35,15 +35,22 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 import { mapGetters } from "vuex";
 
 export default defineComponent({
   name: "HistoryTable",
   data() {
+    const pagination = ref({
+      sortBy: "Date",
+      descending: true,
+      page: 1,
+      rowsPerPage: 5,
+    });
     return {
       enteredValue: "",
       open: false,
+      pagination,
       columns: [
         {
           name: "Date",
@@ -73,7 +80,12 @@ export default defineComponent({
           field: "login",
           sortable: true,
         },
-        { name: "action", label: "Action", field: "action" },
+        {
+          name: "action",
+          label: "Action",
+          field: "action",
+          sortable: true,
+        },
       ],
     };
   },
