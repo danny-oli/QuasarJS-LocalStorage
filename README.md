@@ -41,7 +41,7 @@ $ npm install
 # You can see the app running at the given port. Ex: http://localhost:3000
 $ quasar dev
 
-# Build the app - Head to the file ./dist\spa/index.html
+# Build the app 
 $ npx quasar dev
 
 ```
