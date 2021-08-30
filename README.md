@@ -42,7 +42,8 @@ $ npm install
 $ quasar dev
 
 # Build the app - Head to the file ./dist\spa/index.html
-$ npx serve
+$ npx quasar dev
+
 ```
 
 
